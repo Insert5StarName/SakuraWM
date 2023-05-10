@@ -22,5 +22,5 @@ Edit config.mk to match your local setup (SakuraWM is installed into the /usr/lo
 Afterwards enter the following command to build and install SakuraWM (if
 necessary as root):
 
-    `make clean install`
+    make clean install
 
