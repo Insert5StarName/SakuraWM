@@ -840,7 +840,7 @@ drawbar(Monitor *m)
                 mstext = strsep(&rstext, splitdelim);
                 if(strstr(mstext, hidestatus) == NULL){
                     drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
-                    drw_text(drw, x, 0, w, bh, lrpad / 2, mstext, 0); /* Draw Satus Text in a realy Dumb Way */
+                    drw_text(drw, x, 0, w, bh, lrpad / 2, mstext, 0);
                 }
             }
             drw_setscheme(drw, scheme[SchemeNorm]);
@@ -848,7 +848,7 @@ drawbar(Monitor *m)
             drw_text(drw, m->ww - sw - stw, 0, sw, bh, lrpad / 2 - 2, rstext, 0);
         }
     }
-    /* End of Maybe Bugged and Shit Code */
+    /* End of Status Patch */
 	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
 }
 
@@ -1732,6 +1732,7 @@ setup(void)
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
+    /* SakuraPatch: Custom barheight */
 	bh = drw->fonts->h + barheight;
 	updategeom();
 	/* init atoms */
