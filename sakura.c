@@ -245,8 +245,6 @@ static void tagmon(const Arg *arg);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglefullscr(const Arg *arg);
-static void toggletag(const Arg *arg);
-static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
 static void unmanage(Client *c, int destroyed);
 static void unmapnotify(XEvent *e);
@@ -1921,34 +1919,6 @@ togglefullscr(const Arg *arg)
   if(selmon->sel)
     setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
 }
-
-void
-toggletag(const Arg *arg)
-{
-	unsigned int newtags;
-
-	if (!selmon->sel)
-		return;
-	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
-	if (newtags) {
-		selmon->sel->tags = newtags;
-		focus(NULL);
-		arrange(selmon);
-	}
-}
-
-void
-toggleview(const Arg *arg)
-{
-	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
-
-	if (newtagset) {
-		selmon->tagset[selmon->seltags] = newtagset;
-		focus(NULL);
-		arrange(selmon);
-	}
-}
-
 void
 unfocus(Client *c, int setfocus)
 {
